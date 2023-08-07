@@ -13,6 +13,8 @@ jobs:
     env:
       ANDROID_NDK_HOME: empty
       ANDROID_SDK_HOME: empty
+      KRITA_ROOT: empty
+      KRITA_BUILD: empty
     
 
     steps:
@@ -29,6 +31,9 @@ jobs:
        run : |
              mkdir build install android-ndk android-sdk;
              ls
+             cd build;
+             echo "KRITA_BUILD=$(pwd)" >> $GITHUB_ENV ;
+             
      - name: Download f ALL NDK file
        
        run : |
@@ -77,12 +82,12 @@ jobs:
      - name : Download krita (please forgive me for using github action wrong way)
        run: |
              git clone https://invent.kde.org/graphics/krita.git ;
-             ls ;
-             mv krita krita-a-p;
-             cd krita-a-p;
+             cd krita
+             pwd ;
+             echo "KRITA_ROOT=$(pwd)" >> $GITHUB_ENV ;
              ls ;
      - name : Android Build
        run: |
             cd krita-a-p/packaging/android ;
-            ./androidbuild.sh -p=all --src=/home/runner/work/krita-a-p/krita-a-p/krita-a-p --build-type=Debug --build-root=/home/runner/work/krita-a-p/krita-a-p/build --ndk-path=$ANDROID_NDK_HOME --sdk-path=$ANDROID_SDK_HOME --api-level=21 --android-abi=armeabi-v7a
+            ./androidbuild.sh -p=all --src=$KRITA_ROOT --build-type=Debug --build-root=$KRITA_BUILD --ndk-path=$ANDROID_NDK_HOME --sdk-path=$ANDROID_SDK_HOME --api-level=21 --android-abi=armeabi-v7a
         
