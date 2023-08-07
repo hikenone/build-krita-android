@@ -1,36 +1,88 @@
-# This is a basic workflow to help you get started with Actions
+name: Android Build
 
-name: CI
-
-# Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
-
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+  push:
+    branches:
+      - main
+      - master
+ 
 jobs:
-  # This workflow contains a single job called "build"
   build:
-    # The type of runner that the job will run on
     runs-on: ubuntu-latest
+    env:
+      ANDROID_NDK_HOME: empty
+      ANDROID_SDK_HOME: empty
+    
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+         
+     - name: check update ubuntu and install other deps
+       run: |
+             sudo apt-get update ;
+             sudo apt-get install meson ninja-build ; 
+             
+             
+             
+     - name: Create Folders
+       run : |
+             mkdir build install android-ndk android-sdk;
+             ls
+     - name: Download f ALL NDK file
+       
+       run : |
+            
+             cd android-ndk;
+             curl https://dl.google.com/android/repository/android-ndk-r18b-linux-x86_64.zip -o ndk.zip ;
+             ls ;
+             unzip ndk.zip ;
+     - name : Check Ndk file
+       run: |
+            cd android-ndk/android-ndk-r18b;
+            ls;
+            pwd;
+            echo "ANDROID_NDK_HOME=$(pwd)" >> $GITHUB_ENV ;
+            echo $ANDROID_NDK_HOME  ;
+     - name : Download SDK file
+       run: |
+              cd android-sdk ;
+              curl https://dl.google.com/android/repository/commandlinetools-linux-9477386_latest.zip --output sdk.zip
+              ls;
+              unzip sdk.zip;
+              cd cmdline-tools;
+              ls ;
+              pwd;
+              cd bin;
+              pwd;
+              ls ;
+              echo "ANDROID_SDK_HOME=$(pwd)" >> $GITHUB_ENV ;
+              echo $ANDROID_SDK_HOME  ;
+     - name : Installing SDK 
+       run: |
+             mkdir sdk;
+             cd $ANDROID_SDK_HOME ;
+             ls ;
+             yes | ./sdkmanager --licenses --sdk_root=$ANDROID_SDK_HOME ;
+             yes | ./sdkmanager platform-tools --sdk_root=$ANDROID_SDK_HOME ;
+             yes | ./sdkmanager "platforms;android-21" --sdk_root=$ANDROID_SDK_HOME ;
+             yes | ./sdkmanager "platforms;android-28" --sdk_root=$ANDROID_SDK_HOME ;
+             yes | ./sdkmanager "build-tools;28.0.2" --sdk_root=$ANDROID_SDK_HOME ;
+             ./sdkmanager --licenses --sdk_root=$ANDROID_SDK_HOME ;
+            
+     - name : check sdk
+       run: | 
+             cd $ANDROID_SDK_HOME;
+             ls ;
+     - name : Download krita (please forgive me for using github action wrong way)
+       run: |
+             git clone https://invent.kde.org/graphics/krita.git ;
+             ls ;
+             mv krita krita-a-p;
+             cd krita-a-p;
+             ls ;
+     - name : Android Build
+       run: |
+            cd krita-a-p/packaging/android ;
+            ./androidbuild.sh -p=all --src=/home/runner/work/krita-a-p/krita-a-p/krita-a-p --build-type=Debug --build-root=/home/runner/work/krita-a-p/krita-a-p/build --ndk-path=$ANDROID_NDK_HOME --sdk-path=$ANDROID_SDK_HOME --api-level=21 --android-abi=armeabi-v7a
+        
