@@ -79,7 +79,7 @@ jobs:
        run: | 
              cd $ANDROID_SDK_HOME;
              ls ;
-     - name : Download krita (please forgive me for using github action wrong way)
+     - name : Download krita
        run: |
              git clone https://invent.kde.org/graphics/krita.git ;
              cd krita
