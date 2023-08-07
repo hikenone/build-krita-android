@@ -34,7 +34,7 @@ jobs:
              cd build;
              echo "KRITA_BUILD=$(pwd)" >> $GITHUB_ENV ;
              
-     - name: Download f ALL NDK file
+     - name: Download NDK file
        
        run : |
             
