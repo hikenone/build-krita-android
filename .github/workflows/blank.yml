@@ -88,6 +88,6 @@ jobs:
              ls ;
      - name : Android Build
        run: |
-            cd krita-a-p/packaging/android ;
+            cd krita/packaging/android ;
             ./androidbuild.sh -p=all --src=$KRITA_ROOT --build-type=Debug --build-root=$KRITA_BUILD --ndk-path=$ANDROID_NDK_HOME --sdk-path=$ANDROID_SDK_HOME --api-level=21 --android-abi=armeabi-v7a
         
