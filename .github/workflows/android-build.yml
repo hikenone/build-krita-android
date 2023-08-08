@@ -12,6 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       ANDROID_NDK_HOME: empty
+      ANDROID_NDK: empty
       ANDROID_SDK_HOME: empty
       KRITA_ROOT: empty
       KRITA_BUILD: empty
@@ -48,7 +49,10 @@ jobs:
             ls;
             pwd;
             echo "ANDROID_NDK_HOME=$(pwd)" >> $GITHUB_ENV ;
+            echo "ANDROID_NDK=$(pwd)" >> $GITHUB_ENV ;
             echo $ANDROID_NDK_HOME  ;
+            echo $ANDROID_NDK  ;
+            
      - name : Download SDK file
        run: |
               cd android-sdk ;
