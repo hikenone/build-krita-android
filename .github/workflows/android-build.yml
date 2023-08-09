@@ -93,7 +93,7 @@ jobs:
      #         ls ;
      - name : Download krita
        run: |
-             wget -c https://kinsta.com/filename.tar.gz -O - | sudo tar -xz ;
+             wget -c https://download.kde.org/stable/krita/5.0.6/krita-5.0.6.tar.gz -O - | sudo tar -xz ;
              ls
              # cd krita ;
              # pwd ;
