@@ -95,7 +95,7 @@ jobs:
      - name : Android Build
        run: |
             cd krita/packaging/android ;
-            export CC=/usr/bin/clang \
-            export CXX=/usr/bin/clang++ \
+            export CC=/usr/bin/clang ;
+            export CXX=/usr/bin/clang++ ;
             ./androidbuild.sh -p=all --src=$KRITA_ROOT --build-type=Debug --build-root=$KRITA_BUILD --ndk-path=$ANDROID_NDK_HOME --sdk-path=$ANDROID_SDK_HOME --api-level=21 --android-abi=armeabi-v7a
         
