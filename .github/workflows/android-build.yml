@@ -40,12 +40,12 @@ jobs:
        run : |
             
              cd android-ndk;
-             curl https://dl.google.com/android/repository/android-ndk-r18b-linux-x86_64.zip -o ndk.zip ;
+             curl https://dl.google.com/android/repository/android-ndk-r22b-linux-x86_64.zip -o ndk.zip ;
              ls ;
              unzip ndk.zip ;
      - name : Check Ndk file
        run: |
-            cd android-ndk/android-ndk-r18b;
+            cd android-ndk/android-ndk-r22b;
             ls;
             pwd;
             echo "ANDROID_NDK_HOME=$(pwd)" >> $GITHUB_ENV ;
