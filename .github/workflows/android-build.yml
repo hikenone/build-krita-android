@@ -33,13 +33,8 @@ jobs:
              sudo apt-get install "libkf5*"
              sudo apt-get install appstream libappstream-dev
              sudo apt install libboost-all-dev
-                         
-    
-     - uses: actions/setup-java@v3
-       with:
-            distribution: 'oracle' # See 'Supported distributions' for available options
-            java-version: '8'
-             
+                        
+                     
      - name: Create Folders
        run : |
              mkdir build install android-ndk android-sdk;
@@ -95,6 +90,12 @@ jobs:
        run: | 
              cd $ANDROID_SDK_HOME;
              ls ;
+             
+     - uses: actions/setup-java@v3
+       with:
+            distribution: 'temurin' # See 'Supported distributions' for available options
+            java-version: '8'
+             
      - name : Download krita
        run: |
              wget -c https://download.kde.org/stable/krita/5.0.6/krita-5.0.6.tar.gz -O - | sudo tar -xz ;
