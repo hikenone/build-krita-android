@@ -85,7 +85,7 @@ jobs:
              ls ;
      - name : Download krita
        run: |
-             git clone https://invent.kde.org/graphics/krita.git ;
+             git clone https://invent.kde.org/graphics/krita/-/archive/krita/5.1/krita-krita-5.1.zip ;
              cd krita
              pwd ;
              echo "KRITA_ROOT=$(pwd)" >> $GITHUB_ENV ;
