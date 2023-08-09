@@ -94,7 +94,7 @@ jobs:
      - name : Download krita
        run: |
              curl https://download.kde.org/stable/krita/5.0.6/krita-5.0.6.tar.gz -o krita.tar.gz ;
-             tar -xvzf krita.tar.gz ;
+             tar xvf krita.tar.gz ;
              ls
              # cd krita ;
              # pwd ;
