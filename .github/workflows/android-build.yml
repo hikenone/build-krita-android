@@ -25,7 +25,15 @@ jobs:
        run: |
              sudo apt-get update ;
              sudo apt-get install meson ninja-build ; 
-             
+             sudo apt-get install -y extra-cmake-modules xorg xorg-dev libx11-dev libxcb-xinput-dev libxcb-xinput0
+             sudo apt-get -y install ccache ;
+             sudo apt install catch2 -y ;
+             sudo apt install build-essential software-properties-common -y ;                        
+             sudo apt-get install qt5-qmake qtbase5-dev qtbase5-dev-tools libqt5svg5-dev libqt5webenginewidgets5 libqt5webchannel5-dev qtwebengine5-dev  libkf5coreaddons-dev libkf5widgetsaddons-dev
+             sudo apt-get install "libkf5*"
+             sudo apt-get install appstream libappstream-dev
+             sudo apt install libboost-all-dev
+                         
              
              
      - name: Create Folders
