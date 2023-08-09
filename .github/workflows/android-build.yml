@@ -24,77 +24,77 @@ jobs:
      - name: check update ubuntu and install other deps
        run: |
              sudo apt-get update ;
-             sudo apt-get install meson ninja-build ; 
-             sudo apt-get install -y extra-cmake-modules xorg xorg-dev libx11-dev libxcb-xinput-dev libxcb-xinput0
-             sudo apt-get -y install ccache ;
-             sudo apt install catch2 -y ;
-             sudo apt install build-essential software-properties-common -y ;                        
-             sudo apt-get install qt5-qmake qtbase5-dev qtbase5-dev-tools libqt5svg5-dev libqt5webenginewidgets5 libqt5webchannel5-dev qtwebengine5-dev  libkf5coreaddons-dev libkf5widgetsaddons-dev
-             sudo apt-get install "libkf5*"
-             sudo apt-get install appstream libappstream-dev
-             sudo apt install libboost-all-dev
+     #         sudo apt-get install meson ninja-build ; 
+     #         sudo apt-get install -y extra-cmake-modules xorg xorg-dev libx11-dev libxcb-xinput-dev libxcb-xinput0
+     #         sudo apt-get -y install ccache ;
+     #         sudo apt install catch2 -y ;
+     #         sudo apt install build-essential software-properties-common -y ;                        
+     #         sudo apt-get install qt5-qmake qtbase5-dev qtbase5-dev-tools libqt5svg5-dev libqt5webenginewidgets5 libqt5webchannel5-dev qtwebengine5-dev  libkf5coreaddons-dev libkf5widgetsaddons-dev
+     #         sudo apt-get install "libkf5*"
+     #         sudo apt-get install appstream libappstream-dev
+     #         sudo apt install libboost-all-dev
                          
              
              
-     - name: Create Folders
-       run : |
-             mkdir build install android-ndk android-sdk;
-             ls
-             cd build;
-             echo "KRITA_BUILD=$(pwd)" >> $GITHUB_ENV ;
+     # - name: Create Folders
+     #   run : |
+     #         mkdir build install android-ndk android-sdk;
+     #         ls
+     #         cd build;
+     #         echo "KRITA_BUILD=$(pwd)" >> $GITHUB_ENV ;
              
-     - name: Download NDK file
+     # - name: Download NDK file
        
-       run : |
+     #   run : |
             
-             cd android-ndk;
-             curl https://dl.google.com/android/repository/android-ndk-r22b-linux-x86_64.zip -o ndk.zip ;
-             ls ;
-             unzip ndk.zip ;
-     - name : Check Ndk file
-       run: |
-            cd android-ndk/android-ndk-r22b;
-            ls;
-            pwd;
-            echo "ANDROID_NDK_HOME=$(pwd)" >> $GITHUB_ENV ;
-            echo "ANDROID_NDK=$(pwd)" >> $GITHUB_ENV ;
-            echo $ANDROID_NDK_HOME  ;
-            echo $ANDROID_NDK  ;
+     #         cd android-ndk;
+     #         curl https://dl.google.com/android/repository/android-ndk-r22b-linux-x86_64.zip -o ndk.zip ;
+     #         ls ;
+     #         unzip ndk.zip ;
+     # - name : Check Ndk file
+     #   run: |
+     #        cd android-ndk/android-ndk-r22b;
+     #        ls;
+     #        pwd;
+     #        echo "ANDROID_NDK_HOME=$(pwd)" >> $GITHUB_ENV ;
+     #        echo "ANDROID_NDK=$(pwd)" >> $GITHUB_ENV ;
+     #        echo $ANDROID_NDK_HOME  ;
+     #        echo $ANDROID_NDK  ;
             
-     - name : Download SDK file
-       run: |
-              cd android-sdk ;
-              curl https://dl.google.com/android/repository/commandlinetools-linux-9477386_latest.zip --output sdk.zip
-              ls;
-              unzip sdk.zip;
-              cd cmdline-tools;
-              ls ;
-              pwd;
-              cd bin;
-              pwd;
-              ls ;
-              echo "ANDROID_SDK_HOME=$(pwd)" >> $GITHUB_ENV ;
-              echo $ANDROID_SDK_HOME  ;
-     - name : Installing SDK 
-       run: |
-             mkdir sdk;
-             cd $ANDROID_SDK_HOME ;
-             ls ;
-             yes | ./sdkmanager --licenses --sdk_root=$ANDROID_SDK_HOME ;
-             yes | ./sdkmanager platform-tools --sdk_root=$ANDROID_SDK_HOME ;
-             yes | ./sdkmanager "platforms;android-21" --sdk_root=$ANDROID_SDK_HOME ;
-             yes | ./sdkmanager "platforms;android-28" --sdk_root=$ANDROID_SDK_HOME ;
-             yes | ./sdkmanager "build-tools;28.0.2" --sdk_root=$ANDROID_SDK_HOME ;
-             ./sdkmanager --licenses --sdk_root=$ANDROID_SDK_HOME ;
+     # - name : Download SDK file
+     #   run: |
+     #          cd android-sdk ;
+     #          curl https://dl.google.com/android/repository/commandlinetools-linux-9477386_latest.zip --output sdk.zip
+     #          ls;
+     #          unzip sdk.zip;
+     #          cd cmdline-tools;
+     #          ls ;
+     #          pwd;
+     #          cd bin;
+     #          pwd;
+     #          ls ;
+     #          echo "ANDROID_SDK_HOME=$(pwd)" >> $GITHUB_ENV ;
+     #          echo $ANDROID_SDK_HOME  ;
+     # - name : Installing SDK 
+     #   run: |
+     #         mkdir sdk;
+     #         cd $ANDROID_SDK_HOME ;
+     #         ls ;
+     #         yes | ./sdkmanager --licenses --sdk_root=$ANDROID_SDK_HOME ;
+     #         yes | ./sdkmanager platform-tools --sdk_root=$ANDROID_SDK_HOME ;
+     #         yes | ./sdkmanager "platforms;android-21" --sdk_root=$ANDROID_SDK_HOME ;
+     #         yes | ./sdkmanager "platforms;android-28" --sdk_root=$ANDROID_SDK_HOME ;
+     #         yes | ./sdkmanager "build-tools;28.0.2" --sdk_root=$ANDROID_SDK_HOME ;
+     #         ./sdkmanager --licenses --sdk_root=$ANDROID_SDK_HOME ;
             
-     - name : check sdk
-       run: | 
-             cd $ANDROID_SDK_HOME;
-             ls ;
+     # - name : check sdk
+     #   run: | 
+     #         cd $ANDROID_SDK_HOME;
+     #         ls ;
      - name : Download krita
        run: |
              curl https://download.kde.org/stable/krita/5.0.6/krita-5.0.6.tar.gz -o krita.tar.gz ;
-             tar -xf krita.tar.gz ;
+             tar -xvzf krita.tar.gz ;
              ls
              # cd krita ;
              # pwd ;
