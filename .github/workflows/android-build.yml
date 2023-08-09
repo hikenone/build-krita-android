@@ -24,6 +24,8 @@ jobs:
      - name: check update ubuntu and install other deps
        run: |
              sudo apt-get update ;
+             echo export CC=usr/bin/clang >> ~/.bashrc
+             echo export CXX=usr/bin/clang++ >> ~/.bashrc
              sudo apt-get install meson ninja-build ; 
              sudo apt-get install -y extra-cmake-modules xorg xorg-dev libx11-dev libxcb-xinput-dev libxcb-xinput0
              sudo apt-get -y install ccache ;
