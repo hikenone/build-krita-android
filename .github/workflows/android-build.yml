@@ -93,13 +93,13 @@ jobs:
              ls ;
      - name : Download krita
        run: |
-             curl https://invent.kde.org/graphics/krita/-/archive/krita/5.1/krita-krita-5.1.zip -o krita.zip ;
-             unzip krita.zip ;
-             mv krita-krita-5.1 krita
-             cd krita ;
-             pwd ;
-             echo "KRITA_ROOT=$(pwd)" >> $GITHUB_ENV ;
-             ls ;
+             curl https://download.kde.org/stable/krita/5.0.6/krita-5.0.6.tar.gz -o krita.tar.gz ;
+             tar -xf krita.tar.gz ;
+             ls
+             # cd krita ;
+             # pwd ;
+             # echo "KRITA_ROOT=$(pwd)" >> $GITHUB_ENV ;
+             # ls ;
      - name : Android Build
        run: |
             cd krita/packaging/android ;
