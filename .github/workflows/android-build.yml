@@ -87,7 +87,8 @@ jobs:
        run: |
              curl https://invent.kde.org/graphics/krita/-/archive/krita/5.1/krita-krita-5.1.zip -o krita.zip ;
              unzip krita.zip ;
-             cd krita-krita-5.1 ;
+             mv krita-krita-5.1 krita
+             cd krita ;
              pwd ;
              echo "KRITA_ROOT=$(pwd)" >> $GITHUB_ENV ;
              ls ;
