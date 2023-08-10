@@ -84,8 +84,7 @@ jobs:
              yes | ./sdkmanager --licenses --sdk_root=$ANDROID_SDK_HOME ;
              yes | ./sdkmanager platform-tools --sdk_root=$ANDROID_SDK_HOME ;
              yes | ./sdkmanager "platforms;android-23" --sdk_root=$ANDROID_SDK_HOME ;
-             
-            ./androidbuild.sh -p=all --src=$KRITA_ROOT --build-type=Debug --build-root=$KRITA_BUILD --ndk-path=$ANDROID_NDK_HOME --sdk-path=$ANDROID_SDK_HOME --api-level=31yes | ./sdkmanager "platforms;android-30" --sdk_root=$ANDROID_SDK_HOME ;
+             yes | ./sdkmanager "platforms;android-30" --sdk_root=$ANDROID_SDK_HOME ;
              yes | ./sdkmanager "platforms;android-31" --sdk_root=$ANDROID_SDK_HOME ;
              yes | ./sdkmanager "build-tools;23.0.3" --sdk_root=$ANDROID_SDK_HOME ;
              yes | ./sdkmanager "build-tools;30.0.0" --sdk_root=$ANDROID_SDK_HOME ;
