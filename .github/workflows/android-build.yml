@@ -83,11 +83,10 @@ jobs:
              ls ;
              yes | ./sdkmanager --licenses --sdk_root=$ANDROID_SDK_HOME ;
              yes | ./sdkmanager platform-tools --sdk_root=$ANDROID_SDK_HOME ;
-             yes | ./sdkmanager "platforms;android-21" --sdk_root=$ANDROID_SDK_HOME ;
-             yes | ./sdkmanager "platforms;android-28" --sdk_root=$ANDROID_SDK_HOME ;
-             yes | ./sdkmanager "platforms;android-33" --sdk_root=$ANDROID_SDK_HOME ;
-             yes | ./sdkmanager "build-tools;28.0.2" --sdk_root=$ANDROID_SDK_HOME ;
-             yes | ./sdkmanager "build-tools;33.0.2" --sdk_root=$ANDROID_SDK_HOME ;
+             yes | ./sdkmanager "platforms;android-23" --sdk_root=$ANDROID_SDK_HOME ;
+             yes | ./sdkmanager "platforms;android-31" --sdk_root=$ANDROID_SDK_HOME ;
+             yes | ./sdkmanager "build-tools;23.0.3" --sdk_root=$ANDROID_SDK_HOME ;
+             yes | ./sdkmanager "build-tools;31.0.0" --sdk_root=$ANDROID_SDK_HOME ;
              ./sdkmanager --licenses --sdk_root=$ANDROID_SDK_HOME ;
             
      - name : check sdk
@@ -114,5 +113,5 @@ jobs:
             cd krita/packaging/android ;
             export CC=/usr/bin/clang ;
             export CXX=/usr/bin/clang++ ;
-            ./androidbuild.sh -p=all --src=$KRITA_ROOT --build-type=Debug --build-root=$KRITA_BUILD --ndk-path=$ANDROID_NDK_HOME --sdk-path=$ANDROID_SDK_HOME --api-level=28 --android-abi=x86_64
+            ./androidbuild.sh -p=all --src=$KRITA_ROOT --build-type=Debug --build-root=$KRITA_BUILD --ndk-path=$ANDROID_NDK_HOME --sdk-path=$ANDROID_SDK_HOME --api-level=31
         
